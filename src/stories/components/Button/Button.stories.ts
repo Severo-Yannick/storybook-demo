@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { within, userEvent } from "@storybook/testing-library";
 
 import { Button } from "./Button";
 
@@ -40,5 +41,12 @@ export const Small: Story = {
   args: {
     size: "small",
     label: "Button",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = await canvas.getByRole("button", {
+      name: /Button/i,
+    });
+    await userEvent.click(button);
   },
 };
