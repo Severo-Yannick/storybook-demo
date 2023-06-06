@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { within, userEvent } from "@storybook/testing-library";
+import { expect } from "@storybook/jest";
 
 import { Button } from "./Button";
 
@@ -48,5 +49,6 @@ export const Small: Story = {
       name: /Button/i,
     });
     await userEvent.click(button);
+    expect(button).toHaveStyle('font-size: 12px');
   },
 };
